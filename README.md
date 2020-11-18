@@ -1,3 +1,2 @@
 # quotes-generator
-在线励志语录生成器
-test
+在线生成励志语录
