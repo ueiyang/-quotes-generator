@@ -1,11 +1,151 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <title>励志语录在线生成</title>
+    <style>
+        @keyframes bottomFadeOut {
+            0% {
+                position: absolute;
+                bottom: -5rem;
+                opacity: 0;
+            }
+
+            75% {
+                position: absolute;
+                bottom: 25%;
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInOut {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .quote {
+            font-size: 5rem;
+            position: absolute;
+            left: 5%;
+            bottom: 25%;
+            opacity: 0;
+            color: #F0EBA3;
+            animation-name: bottomFadeOut;
+            animation-delay: 0s;
+            animation-duration: 9s;
+            animation-fill-mode: forwards;
+        }
+
+        .greet {
+            font-size: 3.4rem;
+            position: absolute;
+            top: 10.5rem;
+            left: 10%;
+            opacity: 0;
+            color: #F0A3BE;
+            animation-name: fadeInOut;
+            animation-delay: 0s;
+            animation-duration: 3s;
+            animation-fill-mode: forwards;
+        }
+
+        .animation-box {
+            width: 75%;
+            height: 27.5rem;
+            background-color: blue;
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+            background-color:rgba(0,0,0,0.2); 
+        }
+    </style>
 </head>
-<body>
-<img id="night" src="http://1.bp.blogspot.com/_7-b4ZWNPaD8/TThuPK0cvUI/AAAAAAAAAAQ/jCqRshKkJd4/s1600/night-scene.jpg">
-<img id="day" src="http://media1.santabanta.com/full1/Events/Independence%20Day/independence-day-67a.jpg">
+
+<body background="res/day1.jpg" style="background-position: center center;
+                                       background-repeat: no-repeat;
+                                       background-attachment: fixed;">
+    <section class="animation-box">
+        <div class="greet">早上好！沐皮</div>
+        <div class="quote">Final text, now I am done</div>
+    </section>
 </body>
-</html>>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        SetImage();
+        window.setInterval(SetImage, 1000);
+    });
+
+    function SetImage() {
+        var nowdate = new Date();
+
+        var sunrise1 = new Date();
+        sunrise1.setHours(7);
+        sunrise1.setMinutes(0);
+
+        var sunrise2 = new Date();
+        sunrise2.setHours(7);
+        sunrise2.setMinutes(30);
+
+        var day1 = new Date();
+        day1.setHours(7);
+        day1.setMinutes(40);
+
+        var day2 = new Date();
+        day2.setHours(9);
+        day2.setMinutes(0);
+
+        var day3 = new Date();
+        day3.setHours(17);
+        day3.setMinutes(0);
+
+        var sunset1 = new Date();
+        sunset1.setHours(18);
+        sunset1.setMinutes(0);
+
+        var sunset2 = new Date();
+        sunset2.setHours(18);
+        sunset2.setMinutes(20);
+
+        var night = new Date();
+        night.setHours(18);
+        night.setMinutes(45);
+
+        if (nowdate >= sunrise1 && nowdate < sunrise2) {
+            $("body").attr("background", "res/sunrise1.jpg");
+        }
+        else if (nowdate >= sunrise2 && nowdate < day1) {
+            $("body").attr("background", "res/sunrise2.jpg");
+        }
+        else if (nowdate >= day1 && nowdate < day2) {
+            $("body").attr("background", "res/day1.jpg");
+        }
+        else if (nowdate >= day2 && nowdate < day3) {
+            $("body").attr("background", "res/day2.jpg");
+        }
+        else if (nowdate >= day3 && nowdate < sunset1) {
+            $("body").attr("background", "res/day3.jpg");
+        }
+        else if (nowdate >= sunset1 && nowdate < sunset2) {
+            $("body").attr("background", "res/sunset1.jpg");
+        }
+        else if (nowdate >= sunset2 && nowdate < night) {
+            $("body").attr("background", "res/sunset2.jpg");
+        }
+        else {
+            $("body").attr("background", "res/night.jpg");
+        }
+    }
+</script>
+
+</html>
