@@ -55,10 +55,13 @@
         .quote {
             text-align: center;
             margin: 3rem;
-            font-size: 3rem;
+            font-size: 2rem;
+            font-style: italic;
+            font-family: 楷体;
             position: relative;
             opacity: 0;
-            color: rgb(49, 155, 187);/*rgb(70, 172, 57)*/
+            color: rgb(49, 155, 187);
+            /*rgb(70, 172, 57)*/
             animation-name: fadeInOut;
             animation-delay: 0s;
             animation-duration: 5s;
@@ -73,7 +76,7 @@
             margin: 0 auto;
             position: relative;
             background-color: rgba(255, 255, 255, 0.3);
-            top: 25%;
+            top: 30%;
             border-radius: 1rem;
         }
     </style>
@@ -89,17 +92,19 @@
     <div id="clock">
         <p class="date">{{ date }}</p>
         <p class="time">{{ time }}</p>
-        <p class="text">每一个清晨，都值得为之醒来。沐皮，早安！</p>
+        <p class="text" id='greet'>每一个清晨，都值得为之醒来。沐皮，早安！</p>
     </div>
     <section class="animation-box">
-        <div class="quote" ><p id="quote" style="display: inline-block;text-align: left;">Final text, now I am done</p></div>
+        <div class="quote">
+            <p id="quote" style="display: inline-block;text-align: left;">Final text, now I am done</p>
+        </div>
     </section>
 </body>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="res/quotes.js"></script>
-<script >
+<script>
     window.onload = function () {
-        var quote = quotes[Math.floor(Math.random()*quotes.length)];
+        var quote = quotes[Math.floor(Math.random() * quotes.length)];
         $('#quote').text(quote);
     }
 </script>
@@ -156,7 +161,7 @@
         day2.setMinutes(0);
 
         var day3 = new Date();
-        day3.setHours(17);
+        day3.setHours(15);
         day3.setMinutes(0);
 
         var sunset1 = new Date();
@@ -194,6 +199,66 @@
         }
         else {
             $("body").attr("background", "res/night.jpg");
+        }
+    }
+</script>
+
+<script>
+    $(document).ready(function () {
+        SetGreet();
+        window.setInterval(SetGreet, 1000);
+    });
+
+    function SetGreet() {
+        var nowtime = new Date();
+        var earlyMorning = new Date();
+        earlyMorning.setHours(6);
+        earlyMorning.setMinutes(0);
+
+        var morning = new Date();
+        morning.setHours(9);
+        morning.setMinutes(0);
+
+        var noon = new Date();
+        noon.setHours(11);
+        noon.setMinutes(0);
+
+        var afternoon = new Date();
+        afternoon.setHours(13);
+        afternoon.setMinutes(0);
+
+        var dusk = new Date();
+        dusk.setHours(17);
+        dusk.setMinutes(0);
+
+        var night = new Date();
+        night.setHours(19);
+        night.setMinutes(0);
+
+        var bed = new Date();
+        bed.setHours(23);
+        bed.setMinutes(0);
+
+        if (nowtime >= earlyMorning && nowtime < morning) {
+            $("#greet").text('每一个清晨，都值得为之醒来。早安！');
+        }
+        else if (nowtime >= morning && nowtime < noon) {
+            $("#greet").text('每天都冒出很多念头,不死的才叫做梦想。');
+        }
+        else if (nowtime >= noon && nowtime < afternoon) {
+            $("#greet").text('忙了一上午了，休息一下吧！');
+        }
+        else if (nowtime >= afternoon && nowtime < dusk) {
+            $("#greet").text('下午好！在暖暖的午后，让心灵晒晒太阳。');
+        }
+        else if (nowtime >= dusk && nowtime < night) {
+            $("#greet").text('在美好的黄昏，放松一下心情吧！');
+        }
+        else if (nowtime >= night && nowtime < bed) {
+            $("#greet").text('晚上好！忙了一天了，做点轻松的事吧。');
+        }
+        else {
+            $("#greet").text('相信每一天都是有意义的，晚安！');
         }
     }
 </script>
